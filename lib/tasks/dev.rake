@@ -9,6 +9,20 @@ task({ :sample_data => :environment }) do
     User.destroy_all
   end
 
+  usernames = Array.new { Faker::Name.first_name }
+
+  usernames << "alice"
+  usernames << "bob"
+
+  usernames.each do |username|
+    User.create(
+      email: "#{username}@example.com",
+      password: "password",
+      username: username.downcase,
+      private: [true, false].sample,
+    )
+  end
+
   12.times do
     name = Faker::Name.first_name.downcase
     User.create(
@@ -45,7 +59,7 @@ task({ :sample_data => :environment }) do
     rand(15).times do
       photo = user.own_photos.create(
         caption: Faker::Quote.jack_handey,
-        image: "https://robohash.org/#{rand(9999)}"
+        image: "https://robohash.org/#{rand(9999)}",
       )
 
       user.followers.each do |follower|
@@ -56,7 +70,7 @@ task({ :sample_data => :environment }) do
         if rand < 0.25
           photo.comments.create(
             body: Faker::Quote.jack_handey,
-            author: follower
+            author: follower,
           )
         end
       end
