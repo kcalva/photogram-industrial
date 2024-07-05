@@ -36,7 +36,7 @@ class User < ApplicationRecord
   has_many :accepted_sent_follow_requests, -> { accepted }, foreign_key: :sender_id, class_name: "FollowRequest", dependent: :destroy
 
   has_many :received_follow_requests, foreign_key: :recipient_id, class_name: "FollowRequest", dependent: :destroy
-  has_many :accepted_received_follow_requests, -> { accepted }, foreign_key: :recipient_id, class_name: "FollowRequest",dependent: :destroy
+  has_many :accepted_received_follow_requests, -> { accepted }, foreign_key: :recipient_id, class_name: "FollowRequest", dependent: :destroy
 
   has_many :likes, foreign_key: :fan_id, dependent: :destroy
 
@@ -48,6 +48,10 @@ class User < ApplicationRecord
   has_many :feed, through: :leaders, source: :own_photos
 
   has_many :discover, through: :leaders, source: :liked_photos
+
+  def self.find_by_username!(username)
+    find_by!(username: username)
+  end
 
   validates :username, presence: true, uniqueness: true
 end
