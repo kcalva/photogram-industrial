@@ -1,0 +1,5 @@
+<%= render 'shared/tab_interface' %>
+
+<% @user.followers.each do |follower| %>
+  <%= render 'users/users', user: follower  %>
+<% end %>

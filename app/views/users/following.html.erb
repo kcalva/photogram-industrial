@@ -1,0 +1,5 @@
+<%= render 'shared/tab_interface' %>
+
+<% @user.leaders.each do |leader| %>
+  <%= render 'users/users', user: leader  %>
+<% end %>
