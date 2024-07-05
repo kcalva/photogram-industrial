@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def feed
   end
 
+  def followers
+  end
+
   private
 
   def set_user

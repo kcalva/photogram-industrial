@@ -1,0 +1,9 @@
+<%= render 'shared/tab_interface' %>
+
+<% @user.followers.each do |follower| %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <%= link_to follower.username %>
+    </li>
+  </ul>
+<% end %>
