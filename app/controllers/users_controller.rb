@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   def followers
   end
 
+  def following
+  end
+
   private
 
   def set_user
